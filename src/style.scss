@@ -6,14 +6,14 @@
 
   .slick-list {
     padding-left: 0 !important;
-    padding-right: calc(50vw - 580px) !important;
+    padding-right: calc(50vw - 600px) !important;
     
     @media screen and (max-width: 1200px) {
-      padding-right: calc(50vw - 20px - 460px) !important;
+      padding-right: calc(50vw - 20px - 480px) !important;
     }
     
     @media screen and (max-width: 960px) {
-      padding-right: calc(50vw - 300px) !important;
+      padding-right: calc(50vw - 320px) !important;
     }
   }
 
