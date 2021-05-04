@@ -6,7 +6,15 @@
 
   .slick-list {
     padding-left: 0 !important;
-    padding-right: 15% !important;
+    padding-right: calc(50% - 580px) !important;
+    
+    @media screen and (max-width: 1200px) {
+      padding-right: calc(50% - 20px - 460px) !important;
+    }
+    
+    @media screen and (max-width: 960px) {
+      padding-right: calc(50% - 300px) !important;
+    }
   }
 
   .t902__col {
