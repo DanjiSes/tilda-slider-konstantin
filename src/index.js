@@ -7,7 +7,6 @@ const config = {
   ...(window.shSlider || {}),
 }
 
-
 $(function() {
   config.recId.forEach(function(recId) {
     const $rec = $('#' + recId).addClass('sh-sliderWrap')
@@ -23,6 +22,10 @@ $(function() {
       const textArr = text.split('<br><br>')
       const age = textArr.pop()
       const date = textArr.pop()
+      const btnColorIdx = idx % (config.btnColors.length)
+
+      $sl.find('.t902__btn')
+          .css('backgroundColor', config.btnColors[btnColorIdx])
 
       $text.html(textArr.join('<br><br>'))
 
@@ -57,18 +60,24 @@ $(function() {
     $slider.slick({
       arrows: false,
       dots: false,
-      slidesToShow: 3,
+      slidesToShow: 4,
       slidesToScroll: 1,
       infinite: false,
       responsive: [
         {
           breakpoint: 1200,
           settings: {
-            slidesToShow: 2,
+            slidesToShow: 3,
           },
         },
         {
           breakpoint: 960,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 760,
           settings: {
             slidesToShow: 1,
           },
