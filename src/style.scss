@@ -2,6 +2,10 @@
 
   .slick-slide {
     padding: 0 15px;
+
+    @media screen and (max-width: 960px) {
+      padding-right: 0;
+    }
   }
 
   .slick-list {
@@ -13,7 +17,7 @@
     }
     
     @media screen and (max-width: 960px) {
-      padding-right: calc(50vw - 320px) !important;
+      padding-right: calc(18vw) !important;
     }
   }
 
