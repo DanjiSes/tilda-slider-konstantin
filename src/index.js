@@ -85,24 +85,6 @@ $(function() {
       ],
     })
 
-    const $prevArrow = $(arrowLeft)
-    const $nextArrow = $(arrowRight)
-
-    $prevArrow.on('click', () => {
-      $slider.slick('slickPrev')
-    }).css('opacity', '0.4')
-
-    $nextArrow.on('click', () => {
-      $slider.slick('slickNext')
-    })
-
-    const $arrows = $('<div class="sh-arrows"></div>')
-
-    $arrows.append($prevArrow)
-    $arrows.append($nextArrow)
-
-    $title.append($arrows);
-
     $slider.on('afterChange', function(_, slick, cur) {
       window.scrollTo(0, window.pageYOffset - 1)
       window.scrollTo(0, window.pageYOffset + 1)
@@ -110,8 +92,20 @@ $(function() {
       const isEnd = slick.currentSlide >= slick.slideCount - slick.options.slidesToShow
       const isStart = slick.currentSlide === 0
 
-      $prevArrow.css('opacity', isStart ? '0.4' : '1')
-      $nextArrow.css('opacity', isEnd ? '0.4' : '1')
+      $(this).closest('.t-rec').prev().find('a[href="#sh-sliderprev"]')
+          .css('opacity', isStart ? '0.4' : '1')
+      $(this).closest('.t-rec').prev().find('a[href="#sh-slidernext"]')
+          .css('opacity', isEnd ? '0.4' : '1')
     })
+  })
+
+  $('body').on('click', 'a[href="#sh-sliderprev"]', function(e) {
+    e.preventDefault()
+    $(this).closest('.t-rec').next().find('.sh-slider').slick('slickPrev')
+  })
+
+  $('body').on('click', 'a[href="#sh-slidernext"]', function(e) {
+    e.preventDefault()
+    $(this).closest('.t-rec').next().find('.sh-slider').slick('slickNext')
   })
 })

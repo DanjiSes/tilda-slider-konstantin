@@ -1,7 +1,13 @@
 .sh-slider {
 
+  .slick-track {
+    margin-left: inherit !important;
+    display: flex;
+  }
+
   .slick-slide {
     padding: 0 15px;
+    height: inherit !important;
 
     @media screen and (max-width: 960px) {
       padding-right: 0;
@@ -30,22 +36,26 @@
     box-sizing: border-box;
     padding-left: 0 !important;
     padding-right: 0 !important;
+
+    height: 100% !important;
   }
   
   .t902__inner-col {
-    height: auto !important;
+    height: 100% !important;
     border-radius: 20px;
     overflow: hidden;
   }
 
   .t902__wrap {
     flex-direction: column;
+    height: 100% !important;
   }
 
   .t902__bgwrapper {
     padding-top: 37%;
     width: 100%;
     min-height: auto !important;
+    height: inherit !important;
   }
 
   .t902__bgimg {
@@ -54,7 +64,7 @@
   }
 
   .t902__content {
-    // padding: 25px 30px 30px;
+    box-sizing: border-box;
     padding: 6%;
 
     .t-name {
@@ -64,10 +74,13 @@
 
   .t902__wrap_right {
     padding: 0;
-  }
+    flex-basis: 100%;
 
-  .t902__btn-container {
-    margin-top: 0;
+    .t902__content {
+      height: 100% !important;
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   .sh-title {
@@ -111,6 +124,8 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-between;
+
+    margin-top: auto;
   }
 }
 
