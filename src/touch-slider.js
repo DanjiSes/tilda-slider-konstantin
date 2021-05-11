@@ -29,6 +29,37 @@ jScroll.prototype.init = function() {
 
 jScroll.prototype.bindEvent = function() {
   const _this = this;
+
+  this.$prev.on('click', function(e) {
+    e.preventDefault()
+
+    _this.$obj.animate({
+      scrollLeft: _this.$obj.scrollLeft() + -300,
+    }, 300)
+
+    console.log('prev');
+  })
+  this.$next.on('click', function(e) {
+    e.preventDefault()
+
+    _this.$obj.animate({
+      scrollLeft: _this.$obj.scrollLeft() + 300,
+    }, 300)
+
+    console.log('next');
+  })
+  this.$obj.on('scroll', function() {
+    const obj = _this.$obj.get(0)
+
+    const isStart = obj.scrollLeft <= 0
+    const isEnd = obj.offsetWidth + obj.scrollLeft >= obj.scrollWidth
+
+    _this.$prev.css('opacity', isStart ? '0.4' : '1')
+    _this.$next.css('opacity', isEnd ? '0.4' : '1')
+  })
+
+  if (window.outerWidth <= 640) return _this.$obj.attr('style', 'overflow: auto !important;');
+
   this.$obj.on('mousedown', function(event) {
     if (event.target.tagName == 'A') return
 
@@ -59,6 +90,9 @@ jScroll.prototype.bindEvent = function() {
         _this.$obj.scrollTop(dist);
       }
     }
+
+    $(window).scrollTop($(window).scrollTop() + 1)
+    $(window).scrollTop($(window).scrollTop() - 1)
   });
   this.$obj.get(0).addEventListener('touchstart', function(event) {
     if (event.targetTouches.length == 1) {
@@ -94,33 +128,6 @@ jScroll.prototype.bindEvent = function() {
       }
     }
   });
-  this.$prev.on('click', function(e) {
-    e.preventDefault()
-
-    _this.$obj.animate({
-      scrollLeft: _this.$obj.scrollLeft() + -300,
-    }, 300)
-
-    console.log('prev');
-  })
-  this.$next.on('click', function(e) {
-    e.preventDefault()
-
-    _this.$obj.animate({
-      scrollLeft: _this.$obj.scrollLeft() + 300,
-    }, 300)
-
-    console.log('next');
-  })
-  this.$obj.on('scroll', function() {
-    const obj = _this.$obj.get(0)
-
-    const isStart = obj.scrollLeft <= 0
-    const isEnd = obj.offsetWidth + obj.scrollLeft >= obj.scrollWidth
-
-    _this.$prev.css('opacity', isStart ? '0.4' : '1')
-    _this.$next.css('opacity', isEnd ? '0.4' : '1')
-  })
 };
 
 (function($) {
