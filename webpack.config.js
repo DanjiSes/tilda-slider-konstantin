@@ -7,7 +7,7 @@ const fs = require('fs');
 
 const {CleanWebpackPlugin} = require('clean-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CreateHashFileWebpack = require('create-hash-file-webpack')
+const CreateHashFileWebpack = require('create-hash-file-webpack');
 
 /**
  * Config
@@ -16,7 +16,7 @@ const CreateHashFileWebpack = require('create-hash-file-webpack')
 const isProd = process.env.NODE_ENV === 'production';
 const isDev = !isProd;
 
-const filename = (ext) => isDev ? `[name].${ext}` : `[name].[hash].${ext}`
+const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
 
 const jsLoaders = () => {
   const loaders = [
@@ -26,17 +26,16 @@ const jsLoaders = () => {
         presets: ['@babel/preset-env'],
       },
     },
-  ]
+  ];
 
   if (isDev) {
     loaders.push('eslint-loader');
   }
 
   return loaders;
-}
+};
 
 module.exports = {
-
   // Common
 
   context: path.resolve(__dirname, 'src'),
@@ -72,7 +71,8 @@ module.exports = {
         fileName: 'install.js',
         // content of the file
         content: fs.readFileSync('./src/install.js').toString(),
-      }]),
+      },
+    ]),
   ],
 
   // Loaders
@@ -85,11 +85,7 @@ module.exports = {
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'sass-loader',
-        ],
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
       },
       {
         test: /\.m?js$/,

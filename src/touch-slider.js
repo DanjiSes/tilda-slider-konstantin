@@ -79,16 +79,19 @@ jScroll.prototype.bindEvent = function() {
   });
   $(document).on('mousemove', function(event) {
     if (_this.is_scroll) {
-      let dist;
-      if (_this.type == 'h') {
-        const x = event.pageX;
-        dist = _this.start_pos.base_x - x + _this.start_pos.x;
-        _this.$obj.scrollLeft(dist);
-      } else {
-        const y = event.pageY;
-        dist = _this.start_pos.base_y - y + _this.start_pos.y;
-        _this.$obj.scrollTop(dist);
-      }
+      let dist = undefined;
+      const x = event.pageX;
+      dist = _this.start_pos.base_x - x + _this.start_pos.x;
+      _this.$obj.scrollLeft(dist);
+      // if (_this.type == 'h') {
+      //   const x = event.pageX;
+      //   dist = _this.start_pos.base_x - x + _this.start_pos.x;
+      //   _this.$obj.scrollLeft(dist);
+      // } else {
+      //   const y = event.pageY;
+      //   dist = _this.start_pos.base_y - y + _this.start_pos.y;
+      //   _this.$obj.scrollTop(dist);
+      // }
     }
 
     $(window).scrollTop($(window).scrollTop() + 1)
@@ -96,7 +99,7 @@ jScroll.prototype.bindEvent = function() {
   });
   this.$obj.get(0).addEventListener('touchstart', function(event) {
     if (event.targetTouches.length == 1) {
-      // event.preventDefault();
+      event.preventDefault();
       _this.is_scroll = true;
       _this.start_pos = {
         base_x: _this.$obj.scrollLeft(),
@@ -114,17 +117,20 @@ jScroll.prototype.bindEvent = function() {
   this.$obj.get(0).addEventListener('touchmove', function(event) {
     if (_this.is_scroll) {
       if (event.targetTouches.length == 1) {
-        // event.preventDefault();
-        let dist;
-        if (_this.type == 'h') {
-          const x = event.targetTouches[0].pageX;
-          dist = _this.start_pos.base_x - x + _this.start_pos.x;
-          _this.$obj.scrollLeft(dist);
-        } else {
-          const y = event.targetTouches[0].pageY;
-          dist = _this.start_pos.base_y - y + _this.start_pos.y;
-          _this.$obj.scrollTop(dist);
-        }
+        event.preventDefault();
+        let dist = undefined;
+        const x = event.targetTouches[0].pageX;
+        dist = _this.start_pos.base_x - x + _this.start_pos.x;
+        _this.$obj.scrollLeft(dist);
+        // if (_this.type == 'h') {
+        //   const x = event.targetTouches[0].pageX;
+        //   dist = _this.start_pos.base_x - x + _this.start_pos.x;
+        //   _this.$obj.scrollLeft(dist);
+        // } else {
+        //   const y = event.targetTouches[0].pageY;
+        //   dist = _this.start_pos.base_y - y + _this.start_pos.y;
+        //   _this.$obj.scrollTop(dist);
+        // }
       }
     }
   });
