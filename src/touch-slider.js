@@ -94,8 +94,8 @@ jScroll.prototype.bindEvent = function() {
       // }
     }
 
-    $(window).scrollTop($(window).scrollTop() + 1)
-    $(window).scrollTop($(window).scrollTop() - 1)
+    // $(window).scrollTop($(window).scrollTop() + 1)
+    // $(window).scrollTop($(window).scrollTop() - 1)
   });
   this.$obj.get(0).addEventListener('touchstart', function(event) {
     if (event.targetTouches.length == 1) {
