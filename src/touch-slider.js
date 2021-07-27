@@ -82,20 +82,16 @@ jScroll.prototype.bindEvent = function() {
       let dist = undefined;
       const x = event.pageX;
       dist = _this.start_pos.base_x - x + _this.start_pos.x;
-      _this.$obj.scrollLeft(dist);
-      // if (_this.type == 'h') {
-      //   const x = event.pageX;
-      //   dist = _this.start_pos.base_x - x + _this.start_pos.x;
-      //   _this.$obj.scrollLeft(dist);
-      // } else {
-      //   const y = event.pageY;
-      //   dist = _this.start_pos.base_y - y + _this.start_pos.y;
-      //   _this.$obj.scrollTop(dist);
-      // }
+      if (_this.type == 'h') {
+        const x = event.pageX;
+        dist = _this.start_pos.base_x - x + _this.start_pos.x;
+        _this.$obj.scrollLeft(dist);
+      } else {
+        const y = event.pageY;
+        dist = _this.start_pos.base_y - y + _this.start_pos.y;
+        _this.$obj.scrollTop(dist);
+      }
     }
-
-    // $(window).scrollTop($(window).scrollTop() + 1)
-    // $(window).scrollTop($(window).scrollTop() - 1)
   });
   this.$obj.get(0).addEventListener('touchstart', function(event) {
     if (event.targetTouches.length == 1) {
