@@ -1,19 +1,19 @@
-const path = require('path');
-const fs = require('fs');
+const path = require("path");
+const fs = require("fs");
 
 /**
  * Plugins
  */
 
-const {CleanWebpackPlugin} = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const CreateHashFileWebpack = require('create-hash-file-webpack');
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CreateHashFileWebpack = require("create-hash-file-webpack");
 
 /**
  * Config
  */
 
-const isProd = process.env.NODE_ENV === 'production';
+const isProd = process.env.NODE_ENV === "production";
 const isDev = !isProd;
 
 const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
@@ -21,15 +21,15 @@ const filename = (ext) => (isDev ? `[name].${ext}` : `[name].[hash].${ext}`);
 const jsLoaders = () => {
   const loaders = [
     {
-      loader: 'babel-loader',
+      loader: "babel-loader",
       options: {
-        presets: ['@babel/preset-env'],
+        presets: ["@babel/preset-env"],
       },
     },
   ];
 
   if (isDev) {
-    loaders.push('eslint-loader');
+    loaders.push("eslint-loader");
   }
 
   return loaders;
@@ -38,21 +38,21 @@ const jsLoaders = () => {
 module.exports = {
   // Common
 
-  context: path.resolve(__dirname, 'src'),
-  mode: 'development',
+  context: path.resolve(__dirname, "src"),
+  mode: "development",
   entry: {
-    bundle: ['@babel/polyfill', './index.js'],
+    bundle: ["@babel/polyfill", "./index.js"],
   },
-  devtool: isDev && 'source-map',
+  devtool: isDev && "source-map",
   output: {
-    filename: filename('js'),
-    path: path.join(__dirname, 'dist'),
+    filename: filename("js"),
+    path: path.join(__dirname, "dist"),
   },
   resolve: {
-    extensions: ['.js', '.json'],
+    extensions: [".js", ".json"],
     alias: {
-      '@': path.resolve(__dirname, 'src'),
-      '@styles': path.resolve(__dirname, 'src/styles'),
+      "@": path.resolve(__dirname, "src"),
+      "@styles": path.resolve(__dirname, "src/styles"),
     },
   },
 
@@ -61,16 +61,16 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
-      filename: filename('css'),
+      filename: filename("css"),
     }),
     new CreateHashFileWebpack([
       {
         // path to folder in which the file will be created
-        path: './dist',
+        path: "./dist",
         // file name
-        fileName: 'install.js',
+        fileName: "install.js",
         // content of the file
-        content: fs.readFileSync('./src/install.js').toString(),
+        content: fs.readFileSync("./src/install.js").toString(),
       },
     ]),
   ],
@@ -81,11 +81,11 @@ module.exports = {
     rules: [
       {
         test: /\.css$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader'],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
       {
         test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+        use: [MiniCssExtractPlugin.loader, "css-loader", "sass-loader"],
       },
       {
         test: /\.m?js$/,
@@ -94,7 +94,7 @@ module.exports = {
       },
       {
         test: /\.txt$/i,
-        use: 'raw-loader',
+        use: "raw-loader",
       },
     ],
   },
@@ -102,13 +102,13 @@ module.exports = {
   // Dev Server
 
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
+    contentBase: path.join(__dirname, "dist"),
     port: 3000,
     open: false,
     disableHostCheck: true,
     hot: true,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      "Access-Control-Allow-Origin": "*",
     },
   },
 };
